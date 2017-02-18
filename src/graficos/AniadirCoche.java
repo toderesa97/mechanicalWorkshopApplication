@@ -6,8 +6,10 @@
 package graficos;
 
 import clases.Conexion;
+import clases.Database;
 import java.awt.Color;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -248,55 +250,41 @@ public class AniadirCoche extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Es Obligatorio asociar un cliente");
             return;
         }
-        
-        try{
-            Connection cnx = Conexion.getConnection();
-            
-            
-            String sql = String.format("insert into clientes_coches VALUES('%s','%s')",
-                    this.customerData[0],matricula.getText());
-            cnx.prepareStatement(sql).executeUpdate();
-            
-            sql = String.format("insert into coches VALUES('%s','%s',%d,'%s','%s','%s','%s');",
-                    matricula.getText(),
-                    (String)marca.getSelectedItem(),
-                    Integer.parseInt(caballaje.getText()),
-                    modelo.getText(),
-                    (String)color.getSelectedItem(),descripcion.getText(),
-                    this.customerData[0]);
-            cnx.prepareStatement(sql).executeUpdate();
-            JOptionPane.showMessageDialog(null, "Coche añadido");
-            
-            
-            
-            
-            this.dispose();
-        }catch(SQLException e){
-            if(e.toString().contains("key 'PRIMARY'")){
-                JOptionPane.showMessageDialog(null, "El coche ya existe");
-            }else{
-                JOptionPane.showMessageDialog(null, "Operacion denegada");
-            }
-            
-            
+        String sql;
+        if(this.jButton2.getText().equals("Actualizar")){
+             sql = String.format("update coches set color='%s',descripcion='%s',"
+                     + "dni_cliente='%s'",
+                     (String)color.getSelectedItem(),descripcion.getText(),
+                     this.customerData[0]);
+        }else{
+             sql = String.format("insert into coches VALUES('%s','%s',%d,'%s','%s','%s','%s');",
+                matricula.getText(),
+                (String)marca.getSelectedItem(),
+                Integer.parseInt(caballaje.getText()),
+                modelo.getText(),
+                (String)color.getSelectedItem(),descripcion.getText(),
+                this.customerData[0]);
         }
         
-        
-        
-        
-        
-        
-        
-        
+       
+        if(Database.update(sql)){
+            JOptionPane.showMessageDialog(null, "Coche añadido/actualizado");
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Operacion denegada");
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         SeleccionarCliente ac = new SeleccionarCliente("Añadir coche | Seleccionar cliente"
-                ,this, null, true);
+                , null, true);
         ac.showTableData("");
         ac.setVisible(true);
         
+        String dni = ac.putUserIntoMisClientesTable();
+        label.setText(dni);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -376,6 +364,29 @@ public class AniadirCoche extends javax.swing.JDialog {
         String r = String.format("DNI:%s, Nombre:%s, %s", data[0],data[1],data[2]);
         label.setForeground(Color.BLACK);
         label.setText(r);
+    }
+    
+    public void setData(String[] data){
+        
+        this.customerData = Database.getData("select * from clientes where dni='"
+                +data[0]+"'");
+        
+        
+        matricula.setText(data[0]);
+        matricula.setEditable(false);
+        marca.setSelectedItem((String)data[1]);
+        marca.setEditable(false);
+        caballaje.setText(data[2]);
+        modelo.setText(data[3]);
+        modelo.setEditable(false);
+        color.setSelectedItem((String)data[4]);
+        descripcion.setText(data[5]);
+        
+        label.setText(data[6]);
+        label.setBackground(Color.BLACK);
+        jButton2.setText("Actualizar");
+        this.setTitle("Mis coches | Modificar coche");
+        
     }
 
 }

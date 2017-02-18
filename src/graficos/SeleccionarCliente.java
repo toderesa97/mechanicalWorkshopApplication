@@ -29,16 +29,16 @@ public class SeleccionarCliente extends javax.swing.JDialog {
     /**
      * Creates new form AniadirCoche
      */
-    public SeleccionarCliente(String title, AniadirCoche ac, java.awt.Frame parent, boolean modal) {
+    public SeleccionarCliente(String title, java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.ac = ac;
+        
         initComponents();
         this.setResizable(false);
         this.setTitle(title);
         this.setLocationRelativeTo(null);
         //this.setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
     }
-    private AniadirCoche ac;
+    
     private String busqueda="";
     private String data;
 
@@ -453,11 +453,9 @@ public class SeleccionarCliente extends javax.swing.JDialog {
                 data[i] = (String) this.table.getValueAt(rowToBeErased,i);
             }
             this.dispose();
-            if(ac != null){
-                ac.estableceCliente(data);
-            }else{
-                this.data = data[0];
-            }
+            
+            this.data = data[0];
+            
             
             
         }else{
@@ -503,7 +501,7 @@ public class SeleccionarCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                SeleccionarCliente dialog = new SeleccionarCliente("",null,new javax.swing.JFrame(), true);
+                SeleccionarCliente dialog = new SeleccionarCliente("",new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
