@@ -591,7 +591,8 @@ public class SeleccionarCliente extends javax.swing.JDialog {
         Date actualDate = cal.getTime();
         return actualDate.toString();
     }
-
+    
+    
     public String putUserIntoMisClientesTable() {
         return this.data;
     }

@@ -31,6 +31,8 @@ public class AniadirCoche extends javax.swing.JDialog {
         this.setTitle("Añadir coche");
         this.setLocationRelativeTo(null);
     }
+    
+    private String dni_usuario = "";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -246,7 +248,7 @@ public class AniadirCoche extends javax.swing.JDialog {
             return;
         }
         
-        if(this.customerData == null){
+        if(this.dni_usuario.isEmpty()){
             JOptionPane.showMessageDialog(null, "Es Obligatorio asociar un cliente");
             return;
         }
@@ -255,7 +257,7 @@ public class AniadirCoche extends javax.swing.JDialog {
              sql = String.format("update coches set color='%s',descripcion='%s',"
                      + "dni_cliente='%s'",
                      (String)color.getSelectedItem(),descripcion.getText(),
-                     this.customerData[0]);
+                     this.dni_usuario);
         }else{
              sql = String.format("insert into coches VALUES('%s','%s',%d,'%s','%s','%s','%s');",
                 matricula.getText(),
@@ -263,7 +265,7 @@ public class AniadirCoche extends javax.swing.JDialog {
                 Integer.parseInt(caballaje.getText()),
                 modelo.getText(),
                 (String)color.getSelectedItem(),descripcion.getText(),
-                this.customerData[0]);
+                this.dni_usuario);
         }
         
        
@@ -278,13 +280,13 @@ public class AniadirCoche extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        SeleccionarCliente ac = new SeleccionarCliente("Añadir coche | Seleccionar cliente"
+        SeleccionarCliente sc = new SeleccionarCliente("Añadir coche | Seleccionar cliente"
                 , null, true);
-        ac.showTableData("");
-        ac.setVisible(true);
+        sc.showTableData("");
+        sc.setVisible(true);
         
-        String dni = ac.putUserIntoMisClientesTable();
-        label.setText(dni);
+        this.dni_usuario = sc.putUserIntoMisClientesTable();
+        label.setText(dni_usuario);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
