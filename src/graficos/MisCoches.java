@@ -56,6 +56,7 @@ public class MisCoches extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -124,6 +125,14 @@ public class MisCoches extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1487458530_order-history.png"))); // NOI18N
+        jButton7.setToolTipText("Ver Historial de vehículo");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,7 +146,9 @@ public class MisCoches extends javax.swing.JFrame {
                 .addComponent(jButton5)
                 .addGap(32, 32, 32)
                 .addComponent(jButton6)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(18, 27, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +159,11 @@ public class MisCoches extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton3)
                     .addComponent(jButton2))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(27, 27, 27))
         );
 
         jMenu1.setText("Archivo");
@@ -176,14 +191,15 @@ public class MisCoches extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(lastupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lastupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(313, 313, 313)
                             .addComponent(jButton4))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1022, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1093, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +214,7 @@ public class MisCoches extends javax.swing.JFrame {
                     .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,8 +246,6 @@ public class MisCoches extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
-        
         int rowToBeErased = table.getSelectedRow();
         if(rowToBeErased >= 0){
             String matricula = (String) this.table.getValueAt(rowToBeErased,0);
@@ -256,9 +270,8 @@ public class MisCoches extends javax.swing.JFrame {
                 this.showTableData(sql);
             }
             
-            
         }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un coche");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -273,7 +286,10 @@ public class MisCoches extends javax.swing.JFrame {
             }
             AniadirCoche ac = new AniadirCoche(this, true);
             ac.setData(carData);
+            
             ac.setVisible(true);
+            
+            this.showTableData("");
         }else{
             JOptionPane.showMessageDialog(null, "Ningún coche seleccionado");
         }
@@ -282,9 +298,31 @@ public class MisCoches extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        BuscarCoche bc = new BuscarCoche(this, true);
+        bc.showTableData("");
+        bc.setVisible(true);
         
-        
+        String dni = bc.getDni();
+        if(dni.isEmpty()){
+            this.showTableData("");
+        }else{
+            this.showTableData("select * from coches where dni_cliente='"+dni+"'");
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        int row = table.getSelectedRow();
+        if(row>=0){
+            String matricula = (String)table.getValueAt(row, 0);
+            HistorialCoche hc = new HistorialCoche("Mis coches | Historial ("+
+                    matricula+")",this, true);
+            hc.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ninǵun coche seleccionado");
+        }
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,7 +359,7 @@ public class MisCoches extends javax.swing.JFrame {
         });
     }
 
-       public void showTableData(String s){
+    public void showTableData(String s){
         DefaultTableModel modelo= new DefaultTableModel();
         modelo.addColumn("Matricula");
         modelo.addColumn("Marca");
@@ -375,6 +413,7 @@ public class MisCoches extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

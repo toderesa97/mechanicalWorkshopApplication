@@ -21,12 +21,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BuscarCoche extends javax.swing.JDialog {
 
+    private String dni_cliente="";
+    private String matricula_coche="";
+
     /**
      * Creates new form BuscarCoche
      */
     public BuscarCoche(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Mis coches | Buscar coche");
     }
 
     /**
@@ -45,7 +50,7 @@ public class BuscarCoche extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         Matricula = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        ape = new javax.swing.JTextField();
+        matricula = new javax.swing.JTextField();
         descripcion = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -115,7 +120,7 @@ public class BuscarCoche extends javax.swing.JDialog {
                         .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ape, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                                .addComponent(matricula, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                                 .addComponent(descripcion))
                             .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton8))
@@ -139,7 +144,7 @@ public class BuscarCoche extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Matricula)
-                    .addComponent(ape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
@@ -235,6 +240,20 @@ public class BuscarCoche extends javax.swing.JDialog {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         
+        String m =(String)marca.getSelectedItem();
+        String mat = matricula.getText();
+        String desc = descripcion.getText();
+        
+        String sql = "select * from coches where marca='"+m+"'";
+        
+        if(!mat.isEmpty()){
+            sql += " and matricula like '"+mat+"%'";
+        }
+        if(!desc.isEmpty()){
+            sql += " or descripcion like '%"+desc+"%'";
+        }
+        this.showTableData(sql);
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -258,7 +277,8 @@ public class BuscarCoche extends javax.swing.JDialog {
             for (int i = 0; i < data.length; i++) {
                 data[i] = (String) this.table.getValueAt(rowToBeErased,i);
             }
-            
+            this.dni_cliente = data[6];
+            this.dispose();
 
         }else{
             JOptionPane.showMessageDialog(null, "You must select an user");
@@ -267,7 +287,17 @@ public class BuscarCoche extends javax.swing.JDialog {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        SeleccionarCliente cs = new SeleccionarCliente("",null, true);
+        SeleccionarCliente cs = new SeleccionarCliente("Mis coches | Buscar Cliente",null, true);
+        cs.showTableData("");
+        cs.setVisible(true);
+        
+        this.dni_cliente = cs.putUserIntoMisClientesTable();
+        
+        if(dni_cliente.isEmpty()){
+            this.showTableData("");
+        }else{
+            this.showTableData("select * from coches where dni_cliente='"+dni_cliente+"'");
+        }
         
         
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -316,7 +346,6 @@ public class BuscarCoche extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Matricula;
-    private javax.swing.JTextField ape;
     private javax.swing.JTextField descripcion;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -331,6 +360,7 @@ public class BuscarCoche extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lastupdate;
     private javax.swing.JComboBox<String> marca;
+    private javax.swing.JTextField matricula;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 
@@ -380,5 +410,9 @@ public class BuscarCoche extends javax.swing.JDialog {
         Date actualDate = cal.getTime();
         return actualDate.toString();
     }
+    
+    public String getDni(){return this.dni_cliente;}
+    
+    public String getMatricula(){return this.matricula_coche;}
 
 }

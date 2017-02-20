@@ -115,7 +115,7 @@
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="ape" alignment="0" pref="187" max="32767" attributes="0"/>
+                                  <Component id="matricula" alignment="0" pref="187" max="32767" attributes="0"/>
                                   <Component id="descripcion" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="marca" min="-2" max="-2" attributes="0"/>
@@ -148,7 +148,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Matricula" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ape" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="matricula" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -186,7 +186,7 @@
             <Property name="text" type="java.lang.String" value="Descripci&#xf3;n"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="ape">
+        <Component class="javax.swing.JTextField" name="matricula">
         </Component>
         <Component class="javax.swing.JTextField" name="descripcion">
         </Component>

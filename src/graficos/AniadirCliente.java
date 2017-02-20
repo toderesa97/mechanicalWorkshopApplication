@@ -31,7 +31,7 @@ public class AniadirCliente extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.setTitle("Alta cliente");
         this.setResizable(false);
-        this.setVisible(modal);
+        
         
     }
 
@@ -350,6 +350,7 @@ public class AniadirCliente extends javax.swing.JDialog {
         name.setText(data[1]);
         ape.setText(data[2]);
         sexo.setSelectedItem((String)data[3]);
+        sexo.setEnabled(false);
         provi.setSelectedItem((String)data[4]);
         domi.setText(data[5]);
         jButton2.setText("Actualizar");

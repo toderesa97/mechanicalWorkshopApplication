@@ -90,7 +90,7 @@ public class MisClientes extends javax.swing.JFrame {
         });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1487281640_Remove-Male-User.png"))); // NOI18N
-        jButton2.setToolTipText("Cliente nuevo");
+        jButton2.setToolTipText("Eliminar Cliente");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -98,7 +98,7 @@ public class MisClientes extends javax.swing.JFrame {
         });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1487281656_Search-Male-User.png"))); // NOI18N
-        jButton3.setToolTipText("Cliente nuevo");
+        jButton3.setToolTipText("Buscar Cliente");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -106,7 +106,7 @@ public class MisClientes extends javax.swing.JFrame {
         });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1487378423_Edit-Male-User.png"))); // NOI18N
-        jButton5.setToolTipText("Cliente nuevo");
+        jButton5.setToolTipText("Modificar Cliente");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -244,7 +244,7 @@ public class MisClientes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         AniadirCliente ac = new AniadirCliente(this, true);
-        
+        ac.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -271,7 +271,7 @@ public class MisClientes extends javax.swing.JFrame {
             for (int i = 0; i < data.length; i++) {
                 data[i] = (String)table.getValueAt(rowToBeErased,i);
             }
-            AniadirCliente ac = new AniadirCliente(this, false);
+            AniadirCliente ac = new AniadirCliente(this, true);
             ac.setData(data);
             
             ac.setVisible(true);

@@ -255,9 +255,9 @@ public class AniadirCoche extends javax.swing.JDialog {
         String sql;
         if(this.jButton2.getText().equals("Actualizar")){
              sql = String.format("update coches set color='%s',descripcion='%s',"
-                     + "dni_cliente='%s'",
+                     + "dni_cliente='%s' where matricula='%s'",
                      (String)color.getSelectedItem(),descripcion.getText(),
-                     this.dni_usuario);
+                     this.dni_usuario,matricula.getText());
         }else{
              sql = String.format("insert into coches VALUES('%s','%s',%d,'%s','%s','%s','%s');",
                 matricula.getText(),
@@ -363,13 +363,14 @@ public class AniadirCoche extends javax.swing.JDialog {
     private String[] customerData = null;
     public void estableceCliente(String[] data){
         this.customerData = data;
+        
         String r = String.format("DNI:%s, Nombre:%s, %s", data[0],data[1],data[2]);
         label.setForeground(Color.BLACK);
         label.setText(r);
     }
     
     public void setData(String[] data){
-        
+        this.dni_usuario = data[6];
         this.customerData = Database.getData("select * from clientes where dni='"
                 +data[0]+"'");
         
@@ -377,7 +378,7 @@ public class AniadirCoche extends javax.swing.JDialog {
         matricula.setText(data[0]);
         matricula.setEditable(false);
         marca.setSelectedItem((String)data[1]);
-        marca.setEditable(false);
+        marca.setEnabled(false);
         caballaje.setText(data[2]);
         modelo.setText(data[3]);
         modelo.setEditable(false);

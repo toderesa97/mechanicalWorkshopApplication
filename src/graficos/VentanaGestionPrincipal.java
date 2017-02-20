@@ -44,6 +44,7 @@ public class VentanaGestionPrincipal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         labelnombre = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
@@ -70,13 +71,11 @@ public class VentanaGestionPrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("¿Qué desea hacer?"));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1487201466_money.png"))); // NOI18N
-        jButton3.setText("Mi facturación");
         jButton3.setToolTipText("Mi facturación");
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1487201304_user-group.png"))); // NOI18N
-        jButton2.setText("Mis clientes");
         jButton2.setToolTipText("Ver mis clientes");
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
@@ -87,7 +86,6 @@ public class VentanaGestionPrincipal extends javax.swing.JFrame {
         });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1487202292_BT_steering.png"))); // NOI18N
-        jButton1.setText("Mis vehículos");
         jButton1.setToolTipText("Ver mis coches");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -98,10 +96,19 @@ public class VentanaGestionPrincipal extends javax.swing.JFrame {
         });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1487201454_calendar-clock.png"))); // NOI18N
-        jButton4.setText("Mi citas");
         jButton4.setToolTipText("Mis citas (calendario de citas con clientes)");
         jButton4.setBorderPainted(false);
         jButton4.setContentAreaFilled(false);
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1487462012_palet02.png"))); // NOI18N
+        jButton10.setToolTipText("Mis productos");
+        jButton10.setBorderPainted(false);
+        jButton10.setContentAreaFilled(false);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -110,24 +117,31 @@ public class VentanaGestionPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jButton2)
-                .addGap(35, 35, 35)
+                .addGap(65, 65, 65)
                 .addComponent(jButton1)
-                .addGap(51, 51, 51)
+                .addGap(76, 76, 76)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jButton10)
+                .addGap(70, 70, 70)
                 .addComponent(jButton4)
-                .addGap(36, 36, 36))
+                .addGap(56, 56, 56))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3)
+                            .addComponent(jButton1)
+                            .addComponent(jButton4)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton10)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1487212069_close.png"))); // NOI18N
@@ -264,10 +278,10 @@ public class VentanaGestionPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(679, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1053, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -295,9 +309,9 @@ public class VentanaGestionPrincipal extends javax.swing.JFrame {
                         .addComponent(jButton6)))
                 .addGap(39, 39, 39)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -354,7 +368,7 @@ public class VentanaGestionPrincipal extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         AniadirCliente ac = new AniadirCliente(this, true);
-        
+        ac.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -377,6 +391,15 @@ public class VentanaGestionPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        MisProductos mp = new MisProductos();
+        mp.showTableData("");
+        mp.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -415,6 +438,7 @@ public class VentanaGestionPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
